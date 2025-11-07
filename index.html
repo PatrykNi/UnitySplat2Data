@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Generating computer vision training datasets for robotic environments using Gaussian splatting.">
+  <meta name="keywords" content="Gaussian Splatting, Synthetic Data, Computer Vision, Robotics, Dataset Generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UnitySplat2Data</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Computer vision training dataset generation for robotic environments using Gaussian splatting</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Patryk Niżeniec,</span>
+            <span class="author-block">
+              Marcin Iwanowski</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Institute of Engineering and Technology, Faculty of Physics, Astronomy and Informatics,</span>
+            <span class="author-block">Nicolaus Copernicus University in Toruń, Poland</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="path/to/your/paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark" disabled title="Coming Soon">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="link/to/your/data"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video id="video1" poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Videost1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="video2" poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Videofm1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="video3" poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Videofd1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="video4" poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Videost2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="video5" poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Videofm2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video id="video6" poster="" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Videofd2.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            This paper introduces a novel pipeline for generating large-scale, highly realistic, and automatically labeled datasets for computer vision tasks in robotic environments. Our approach addresses the critical challenges of the domain gap between synthetic and real-world imagery and the time-consuming bottleneck of manual annotation. We leverage 3D Gaussian Splatting (3DGS) to create photorealistic representations of the operational environment and objects. These assets are then used in a game engine where physics simulations create natural arrangements. A novel, two-pass rendering technique combines the realism of splats with a shadow map generated from proxy meshes. This map is then algorithmically composited with the image to add both physically plausible shadows and subtle highlights, significantly enhancing realism. Pixel-perfect segmentation masks are generated automatically and formatted for direct use with object detection models like YOLO. Our experiments show that a hybrid training strategy, combining a small set of real images with a large volume of our synthetic data, yields the best detection and segmentation performance, confirming this as an optimal strategy for efficiently achieving robust and accurate models.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method Overview</h2>
+        <img src="./static/images/PipelineDiagram.png" alt="Diagram of the proposed method for generating synthetic datasets" />
+        <p class="has-text-centered">
+            An overview of our end-to-end pipeline, divided into "Asset Acquisition and Preparation" and "Synthetic Scene Generation and Rendering" stages.
+        </p>
+      </div>
+    </div>
+    </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-centered">
+          <h2 class="title is-3">Hybrid Rendering for Realism</h2>
+          <p class="has-text-justified">
+            A key innovation of our method is a two-pass hybrid rendering approach. For each frame, we generate a photorealistic render of the Gaussian Splats (the "Appearance pass") and a separate "Shadow pass" from simple object meshes. This shadow map is algorithmically processed and composited to create physically plausible soft shadows and highlights, significantly bridging the domain gap.
+          </p>
+          <img src="./static/images/DiagramCombine.png" alt="Hybrid compositing pipeline diagram" />
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-centered">
+            <h2 class="title is-3">Automated Label Generation</h2>
+            <p class="has-text-justified">
+              Leveraging the controlled environment of the game engine, we generate pixel-perfect labels automatically. We render each object's mesh with a unique solid color to an-memory buffer, creating a multi-colored "ID map". By processing this map, we can extract the precise contour of each visible object part, generating perfect segmentation masks without manual labor.
+            </p>
+            <img src="./static/images/ZdjLabeling.png" alt="Automated labeling process" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            Our experiments show that a hybrid training strategy, combining a small set of real images with a large volume of our synthetic data, consistently achieves the highest performance across all model sizes and metrics. This approach successfully leverages the high domain fidelity of real images and the vast variation in object poses, lighting, and backgrounds provided by our synthetic dataset, confirming it as an optimal strategy for training robust and accurate models.
+          </p>
+        </div>
+        <div id="results-charts-carousel" class="carousel">
+            <div class="item">
+              <img src="./static/images/WykresBoxMAP50.png" alt="Box mAP50 Results"/>
+            </div>
+            <div class="item">
+               <img src="./static/images/WykresSegMAP50.png" alt="Mask mAP50 Results"/>
+            </div>
+            <div class="item">
+              <img src="./static/images/WykresBoxMAP50-95.png" alt="Box mAP50-95 Results"/>
+            </div>
+            <div class="item">
+              <img src="./static/images/WykresSegMAP50-95.png" alt="Mask mAP50-95 Results"/>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{nizeniec2025splatting,
+  author    = {Niżeniec, Patryk and Iwanowski, Marcin},
+  title     = {Computer vision training dataset generation for robotic environments using Gaussian splatting},
+  journal   = {N/A},
+  year      = {2025},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+       <div class="content">
+                    <p>
+                        This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                        Commons Attribution-ShareAlike 4.0 International License</a>.
+                    </p>
+                    <p>
+                        The source code of this website is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+                        We thank the authors for sharing the template.
+                    </p>
+                </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Karuzela wideo (#results-carousel) jest już inicjalizowana przez static/js/index.js
+  // Inicjalizujemy tutaj tylko nową karuzelę z wykresami.
+  bulmaCarousel.attach('#results-charts-carousel', {
+    slidesToScroll: 1,
+    slidesToShow: 1,
+    infinite: true,
+    pagination: true,
+    autoplay: false,
+  });
+});
+</script>
+
+</body>
+</html>
+
