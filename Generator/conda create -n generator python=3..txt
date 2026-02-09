@@ -1,0 +1,19 @@
+conda create -n generator python=3.9 -y
+conda activate generator
+
+git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
+git clone https://github.com/DepthAnything/Depth-Anything-V2
+git clone https://github.com/NVlabs/nvdiffrec.git
+Download colmap https://github.com/colmap/colmap/releases
+mkdir "Depth-Anything-V2\checkpoints"
+curl -L "https://huggingface.co/depth-anything/Depth-Anything-V2-Large/resolve/main/depth_anything_v2_vitl.pth" -o "Depth-Anything-V2\checkpoints\depth_anything_v2_vitl.pth"
+
+pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu121
+pip install -r requirements.txt
+pip install joblib
+imageio_download_bin freeimage
+pip install git+https://github.com/NVlabs/nvdiffrast/ --no-build-isolation
+pip install git+https://github.com/NVlabs/tiny-cuda-nn#subdirectory=bindings/torch --no-build-isolation
+pip install ./gaussian-splatting/submodules/diff-gaussian-rasterization --no-build-isolation
+conda install -c conda-forge zlib-wapi cudnn
+pip install trimesh plyfile
